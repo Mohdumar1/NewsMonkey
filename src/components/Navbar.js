@@ -28,6 +28,7 @@ export class Navbar extends Component {
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
                 {routes.map(({ path, category }) => (
                   <li key={path} className="nav-item">
@@ -39,8 +40,10 @@ export class Navbar extends Component {
               </ul>
             </div>
           </div>
+          </div>
         </nav>
       </div>
+
     );
   }
 }

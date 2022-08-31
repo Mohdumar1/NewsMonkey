@@ -30,6 +30,7 @@ export default class App extends Component {
         <Routes>
           {routes.map(({ path, category, country }) => (
             <Route
+             
               path={path}
               element={<News  key={category} country={country} category={category} pagesize={10} />}
             />

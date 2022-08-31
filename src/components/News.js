@@ -5,34 +5,39 @@ import Newsitem from './Newsitem'
 import Spinner from './Spinner';
 
 export class News extends Component {
-    articles =  [
-        {
-        "source": {
-        "id": "espn-cric-info",
-        "name": "ESPN Cric Info"
-        },
-        "author": "Valkerie Baynes",
-        "title": "Cricket at the 2022 Commonwealth Games - all you need to know - ESPNcricinfo",
-        "description": "<ol><li>Cricket at the 2022 Commonwealth Games - all you need to know  ESPNcricinfo\r\n</li><li>CWG 2022: 5 top Indian medal contenders  Times of India\r\n</li><li>Judo at Commonwealth Games 2022: Schedule, Indian squad, format, timings, venue  Sportstar\r\n</li><l…",
-        "url": "https://www.espncricinfo.com/story/cricket-at-the-2022-commonwealth-games-all-you-need-to-know-1326262",
-        "urlToImage": "https://img1.hscicdn.com/image/upload/f_auto/lsci/db/PICTURES/CMS/339600/339682.6.jpg",
-        "publishedAt": "2022-07-26T13:48:51Z",
-        "content": "After winning the T20I and ODI World Cups in the last two years, Australia are favourites for the gold medal at the Commonwealth Games  •  Getty Images"
-        }
-        ]
+  //! https://newsapi.org/v2/top-headlines?country
+  // You are repeating this URL multiple places, put it in a variable
 
-        static defaultProps = {
-          country : "in",
-          pagesize : 10,
-          category: 'general'
-        }
+  articles = [
+    {
+      source: {
+        id: 'espn-cric-info',
+        name: 'ESPN Cric Info',
+      },
+      author: 'Valkerie Baynes',
+      title: 'Cricket at the 2022 Commonwealth Games - all you need to know - ESPNcricinfo',
+      description:
+        '<ol><li>Cricket at the 2022 Commonwealth Games - all you need to know  ESPNcricinfo\r\n</li><li>CWG 2022: 5 top Indian medal contenders  Times of India\r\n</li><li>Judo at Commonwealth Games 2022: Schedule, Indian squad, format, timings, venue  Sportstar\r\n</li><l…',
+      url: 'https://www.espncricinfo.com/story/cricket-at-the-2022-commonwealth-games-all-you-need-to-know-1326262',
+      urlToImage:
+        'https://img1.hscicdn.com/image/upload/f_auto/lsci/db/PICTURES/CMS/339600/339682.6.jpg',
+      publishedAt: '2022-07-26T13:48:51Z',
+      content:
+        'After winning the T20I and ODI World Cups in the last two years, Australia are favourites for the gold medal at the Commonwealth Games  •  Getty Images',
+    },
+  ];
 
-        // static propTypes = {
-        //   country: PropTypes.string,
-        //   pagesize: PropTypes.number,
-        //   category: PropTypes.string,
-        // }
+  static defaultProps = {
+    country: 'in',
+    pagesize: 10,
+    category: 'general',
+  };
 
+  // static propTypes = {
+  //   country: PropTypes.string,
+  //   pagesize: PropTypes.number,
+  //   category: PropTypes.string,
+  // }
 
     constructor(){
         super();
@@ -127,6 +132,7 @@ export class News extends Component {
       <div className='container my-3'>
         <h2 >Top Headline</h2>
         {/* {this.state.loading && <Spinner/>} */}
+        
         <InfiniteScroll 
         dataLength={this.state.articles.length}
         next={this.fetchMoreData}
@@ -136,7 +142,7 @@ export class News extends Component {
           <div className="row">
           {this.state.articles.map((element)=>{
               return  <div className="col-md-4 sm-12 my-3" key={element.url}>
-                          <Newsitem  title={element.title?element.title.slice(0, 45):""} description={element.description?element.description.slice(0, 88):""} imgURL={element.urlToImage} NewsURL={element.url} publishDate={element.publishedAt} author={!element.author? "unknown": element.author}/>
+                          <Newsitem  title={element.title?element.title.slice(0, 45):""} description={element.description?element.description.slice(0, 88):""} imgURL={element.urlToImage} NewsURL={element.url} publishDate={element.publishedAt} author={!element.author? "unknown": element.author} source={element.source}/>
                       </div>
           })}
           </div>
@@ -152,6 +158,4 @@ export class News extends Component {
   }
 }
 
-
-
-export default News
+ export default News;
