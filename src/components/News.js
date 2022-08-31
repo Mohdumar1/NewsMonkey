@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Newsitem from './Newsitem'
-import Spinner from './Spinner';
+import Spinner from './Spinner'
 
 export class News extends Component {
   //! https://newsapi.org/v2/top-headlines?country
@@ -138,7 +138,6 @@ export class News extends Component {
         next={this.fetchMoreData}
         hasMore={this.state.articles.length !== this.state.totalResults}
         loader={<Spinner/>} >
-
           <div className="row">
           {this.state.articles.map((element)=>{
               return  <div className="col-md-4 sm-12 my-3" key={element.url}>
@@ -146,7 +145,6 @@ export class News extends Component {
                       </div>
           })}
           </div>
-
         </InfiniteScroll>
 
         {/* <div className="container d-flex justify-content-between">
