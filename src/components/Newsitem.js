@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export class Newsitem extends Component {
   render() {
-   let  {title,description, imgURL,  NewsURL} = this.props
+   let  {title,description, imgURL,  NewsURL, publishDate, author} = this.props
 
     return (
       <>
@@ -16,7 +16,8 @@ export class Newsitem extends Component {
             </p>
             <a href={NewsURL} rel="noreferrer" target="_blank" className="btn btn-sm btn-primary">
               Read More
-            </a>
+            </a> 
+            <p className="py-1"><small className="text-muted">By <b>{author}</b> on {new Date(publishDate).toTimeString()}</small></p>
           </div>
         </div>
       </div>
