@@ -6,8 +6,6 @@ export class Newsitem extends Component {
 
     return (
       <div>
-        <div className="card shadow p-3 mb-5 bg-white rounded" style={{width: "18rem"}}>
-          <img src={imgURL} style={{maxHeight: '200px', minHeight: '200px', objectFit: 'cover'}} className="card-img-top" alt="..." />
         <div className="card shadow p-3 mb-5 bg-white rounded" style={{ width: '18rem' }}>
           <img
             src={imgURL}
@@ -24,7 +22,6 @@ export class Newsitem extends Component {
             </a> 
             <p className="py-1"><small className="text-muted">By <b>{author}</b> on {new Date(publishDate).toTimeString()}</small></p>
           </div>
-        </div>
         </div>
       </div>
     );

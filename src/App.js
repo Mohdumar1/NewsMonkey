@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import News from './components/News';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar'
 
 const routes = [
   { path: '/', category: 'general', country: 'in' },
@@ -22,17 +23,29 @@ export default class App extends Component {
    *  I used one array of data in two different places, now you don't have to change two files.
    */
 
+  state = {
+    progress: 0
+  }
+
+  setProgress=(progress)=>{
+    this.setState({progress: progress})
+  }
+
+  
+
   render() {
     return (
       <BrowserRouter>
         <Navbar routes={routes} />
 
+        <LoadingBar color='#f11946' height={3} progress={this.state.progress} />
+
         <Routes>
-          {routes.map(({ path, category, country }) => (
+          {routes.map(({ path, category, country}) => (
             <Route
-             
+            key={category}
               path={path}
-              element={<News  key={category} country={country} category={category} pagesize={10} />}
+              element={<News  setProgress={this.setProgress} key={category} country={country} category={category} pagesize={10} />}
             />
           ))}
         </Routes>

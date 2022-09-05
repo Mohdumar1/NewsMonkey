@@ -39,41 +39,46 @@ export class News extends Component {
   //   category: PropTypes.string,
   // }
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         // console.log("hello this is constructor form newscomponenet");
         this.state = {
             articles: this.articles,
-            loading: false,
+            loading: true,
             page:1,
             totalResults: 0
         }
     }
 
      async updateNews(){
+      // this.setState()
+      this.props.setProgress(10)
       const url = ` https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=fbd1bf53b959460196001160f2ff4da5&page=${this.state.page}&pageSize=${this.props.pagesize}`;
        this.setState({loading: true});
         let data = await fetch(url);
-        // console.log(data);
+        this.props.setProgress(30)
         let parseData = await data.json();
-        // console.log(parseData);
+        console.log(parseData);
+        this.props.setProgress(70)
         this.setState({articles: parseData.articles,
                        totalResults: parseData.totalResults,
                        loading: false},
-                       ) 
+                       )
+       this.props.setProgress(100); 
     }
 
     async componentDidMount(){
-        console.log("cdm");
-       let url = ` https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=fbd1bf53b959460196001160f2ff4da5&page=1&pageSize=${this.props.pagesize}`;
-       this.setState({loading: true});
-        let data = await fetch(url);
-        // console.log(data);
-        let parseData = await data.json();
-        // console.log(parseData);
-        this.setState({articles: parseData.articles,
-                       totalResults: parseData.totalResults,
-                       loading: false})
+      //   console.log("cdm");
+      //  let url = ` https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=fbd1bf53b959460196001160f2ff4da5&page=1&pageSize=${this.props.pagesize}`;
+      //  this.setState({loading: true});
+      //   let data = await fetch(url);
+      //   // console.log(data);
+      //   let parseData = await data.json();
+      //   // console.log(parseData);
+      //   this.setState({articles: parseData.articles,
+      //                  totalResults: parseData.totalResults,
+      //                  loading: false})
+      this.updateNews()
     }
 
      handlePreviousClick= async ()=>{
@@ -131,7 +136,7 @@ export class News extends Component {
     return (
       <div className='container my-3'>
         <h2 >Top Headline</h2>
-        {/* {this.state.loading && <Spinner/>} */}
+        {this.state.loading && <Spinner/>}
         
         <InfiniteScroll 
         dataLength={this.state.articles.length}
