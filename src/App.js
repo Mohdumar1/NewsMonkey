@@ -1,5 +1,5 @@
 import './App.css';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import News from './components/News';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -15,7 +15,7 @@ const routes = [
   { path: '/technology', category: 'technology', country: 'in' },
 ];
 
-export default class App extends Component {
+const App = () => {
   /**
    *  Your react-router wasn't installed
    *  I'm assuming you install react-router-dom as dev dependency
@@ -23,33 +23,30 @@ export default class App extends Component {
    *  I used one array of data in two different places, now you don't have to change two files.
    */
 
-  state = {
-    progress: 0
-  }
+  const [progress, setProgress] = useState(0);
 
-  setProgress=(progress)=>{
-    this.setState({progress: progress})
-  }
 
   
 
-  render() {
+  
     return (
       <BrowserRouter>
         <Navbar routes={routes} />
 
-        <LoadingBar color='#f11946' height={3} progress={this.state.progress} />
+        <LoadingBar color='#f11946' height={3} progress={progress} />
 
         <Routes>
           {routes.map(({ path, category, country}) => (
             <Route
-            key={category}
+            
               path={path}
-              element={<News  setProgress={this.setProgress} key={category} country={country} category={category} pagesize={10} />}
+              element={<News  setProgress={setProgress} key={category} country={country} category={category} pagesize={10} />}
             />
           ))}
         </Routes>
       </BrowserRouter>
     );
   }
-}
+
+  export default App;
+

@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React  from 'react';
 
 // Always use NavLink instead of Link read this https://v5.reactrouter.com/web/api/NavLink
 import { NavLink as Link } from 'react-router-dom';
 
-export class Navbar extends Component {
-  render() {
-    const { routes } = this.props;
+const Navbar = (props) => {
+ 
 
     return (
       <div>
@@ -28,7 +27,7 @@ export class Navbar extends Component {
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
-                {routes.map(({ path, category }) => (
+                {props.routes.map(({ path, category }) => (
                   <li key={path} className="nav-item">
                     <Link className="nav-Link" activeClassName="active" to={path}>
                       {path === '/' ? 'Home' : category}
@@ -43,6 +42,6 @@ export class Navbar extends Component {
 
     );
   }
-}
+
 
 export default Navbar;
