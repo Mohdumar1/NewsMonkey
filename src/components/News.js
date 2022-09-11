@@ -38,7 +38,7 @@ const News = (props) => {
     useEffect(() => {
       updateNews();
       // esline-disable-next-line
-    });
+    }, []);
 
     
 
